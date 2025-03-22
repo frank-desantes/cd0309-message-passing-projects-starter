@@ -1,0 +1,8 @@
+frontend -> persons with REST
+Because persons will be grow only linear over time, I decided to implment REST with no concern about data size and performance.
+
+frontend -> connections with gRPC
+Because connections will grow over time in a quadratically way, I decide to implement gRPC to adress data size and performance. This should help small clients to respond quickly over weak internet connections.
+
+tracker -> locations with KAFKA
+locations will be mass generated all the time with peaks at office hours growing randomly. I decide to use KAFAK to better scale (by adding more servers on demand) and for better fail-savety (queueing data during downtimes of the server(s)).   

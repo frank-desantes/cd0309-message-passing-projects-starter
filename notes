@@ -1,2 +1,16 @@
+in rest_api
+	change Dockerfile to EXPOSE 5002
+
 in deployment 
-	change all image entrys from udacy to frankdesantes
+	create deployment\udaconnect-rest-api.yaml
+			with frankdesantes/udaconnect-rest-api:v1
+			port 5002->30002
+
+before building docker image localy set os environment in file dbEnvironment.txt
+	DB_USERNAME="ct_admin"
+	DB_NAME="geoconnections"
+	DB_HOST="postgres"
+	DB_PORT="5432"
+	DB_PASSWORD="wowimsosecure"
+		and start with
+	docker run --env-file dbEnvironment.txt -p 30002:5002 udaconnect-rest-api 
