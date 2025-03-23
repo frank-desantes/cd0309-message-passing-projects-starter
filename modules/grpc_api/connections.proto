@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+service ConnectionService {
+    rpc GetConnections (ConnectionRequest) returns (ConnectionResponse);
+}
+
+message ConnectionRequest {
+    string person_id = 1;
+    string start_date = 2;
+    string end_date = 3;
+    int32 distance = 4;
+}
+
+message ConnectionResponse {
+    repeated Connection connections = 1;
+}
+
+message Connection {
+    string id = 1;
+    string name = 2;
+}

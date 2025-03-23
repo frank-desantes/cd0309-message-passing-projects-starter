@@ -14,3 +14,77 @@ before building docker image localy set os environment in file dbEnvironment.txt
 	DB_PASSWORD="wowimsosecure"
 		and start with
 	docker run --env-file dbEnvironment.txt -p 30002:5002 udaconnect-rest-api 
+
+
+#grpc java script client
+import { ConnectionServiceClient } from './generated/connections_grpc_web_pb';
+import { ConnectionRequest } from './generated/connections_pb';
+
+const client = new ConnectionServiceClient('http://localhost:8080'); // Adjust the URL as needed
+
+
+getConnections = (personId) => {
+    if (personId) {
+        const request = new ConnectionRequest();
+        request.setPersonId(personId);
+        request.setStartDate('2020-01-01');
+        request.setEndDate('2020-12-30');
+        request.setDistance(5);
+
+        client.getConnections(request, {}, (err, response) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            const connections = response.getConnectionsList(); // Assuming this returns a list of connections
+            this.setState({
+                connections: connections,
+                personId: this.state.personId,
+            });
+        });
+    }
+};
+
+#grpc python server
+import grpc
+from concurrent import futures
+import time
+
+# Import the generated classes
+import connections_pb2
+import connections_pb2_grpc
+
+# Create a class to define the server functions
+class ConnectionService(connections_pb2_grpc.ConnectionServiceServicer):
+    def GetConnections(self, request, context):
+        # Implement the logic for the GetConnections RPC
+        # For demonstration, returning a static response
+        response = connections_pb2.ConnectionResponse()
+        
+        # Create some sample connections
+        connection1 = connections_pb2.Connection(id="1", name="Alice")
+        connection2 = connections_pb2.Connection(id="2", name="Bob")
+        
+        # Add connections to the response
+        response.connections.extend([connection1, connection2])
+        
+        return response
+
+def serve():
+    # Create a gRPC server
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    # Add the defined service to the server
+    connections_pb2_grpc.add_ConnectionServiceServicer_to_server(ConnectionService(), server)
+    # Specify the port to listen on
+    server.add_insecure_port('[::]:50051')
+    # Start the server
+    server.start()
+    print("Server is running on port 50051...")
+    try:
+        while True:
+            time.sleep(86400)  # Keep the server running
+    except KeyboardInterrupt:
+        server.stop(0)
+
+if __name__ == '__main__':
+    serve()
