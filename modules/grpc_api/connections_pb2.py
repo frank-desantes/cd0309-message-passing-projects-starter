@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11\x63onnections.proto\"^\n\x11\x43onnectionRequest\x12\x11\n\tperson_id\x18\x01 \x01(\t\x12\x12\n\nstart_date\x18\x02 \x01(\t\x12\x10\n\x08\x65nd_date\x18\x03 \x01(\t\x12\x10\n\x08\x64istance\x18\x04 \x01(\x05\"6\n\x12\x43onnectionResponse\x12 \n\x0b\x63onnections\x18\x01 \x03(\x0b\x32\x0b.Connection\"&\n\nConnection\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t2N\n\x11\x43onnectionService\x12\x39\n\x0eGetConnections\x12\x12.ConnectionRequest\x1a\x13.ConnectionResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11\x63onnections.proto\"^\n\x11\x43onnectionRequest\x12\x11\n\tperson_id\x18\x01 \x01(\t\x12\x12\n\nstart_date\x18\x02 \x01(\t\x12\x10\n\x08\x65nd_date\x18\x03 \x01(\t\x12\x10\n\x08\x64istance\x18\x04 \x01(\x05\"6\n\x12\x43onnectionResponse\x12 \n\x0b\x63onnections\x18\x01 \x03(\x0b\x32\x0b.Connection\"B\n\nConnection\x12\x17\n\x06person\x18\x01 \x01(\x0b\x32\x07.Person\x12\x1b\n\x08location\x18\x02 \x01(\x0b\x32\t.Location\"Q\n\x06Person\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x12\n\nfirst_name\x18\x02 \x01(\t\x12\x11\n\tlast_name\x18\x03 \x01(\t\x12\x14\n\x0c\x63ompany_name\x18\x04 \x01(\t\"e\n\x08Location\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x11\n\tperson_id\x18\x02 \x01(\x05\x12\x11\n\tlongitude\x18\x03 \x01(\t\x12\x10\n\x08latitude\x18\x04 \x01(\t\x12\x15\n\rcreation_time\x18\x05 \x01(\t2N\n\x11\x43onnectionService\x12\x39\n\x0eGetConnections\x12\x12.ConnectionRequest\x1a\x13.ConnectionResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -26,7 +26,11 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _globals['_CONNECTIONRESPONSE']._serialized_start=117
   _globals['_CONNECTIONRESPONSE']._serialized_end=171
   _globals['_CONNECTION']._serialized_start=173
-  _globals['_CONNECTION']._serialized_end=211
-  _globals['_CONNECTIONSERVICE']._serialized_start=213
-  _globals['_CONNECTIONSERVICE']._serialized_end=291
+  _globals['_CONNECTION']._serialized_end=239
+  _globals['_PERSON']._serialized_start=241
+  _globals['_PERSON']._serialized_end=322
+  _globals['_LOCATION']._serialized_start=324
+  _globals['_LOCATION']._serialized_end=425
+  _globals['_CONNECTIONSERVICE']._serialized_start=427
+  _globals['_CONNECTIONSERVICE']._serialized_end=505
 # @@protoc_insertion_point(module_scope)
