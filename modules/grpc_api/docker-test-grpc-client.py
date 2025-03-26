@@ -10,7 +10,7 @@ stub = connections_pb2_grpc.ConnectionServiceStub(channel)
 
 # Create a request
 request = connections_pb2.ConnectionRequest(
-    person_id="5",
+    person_id=5,
     start_date="2020-01-01",
     end_date="2020-12-30",
     distance=5
@@ -20,6 +20,20 @@ request = connections_pb2.ConnectionRequest(
 response = stub.GetConnections(request)
 
 # Process the response
+print("Connections")
 for connection in response.connections:
-    print(f"Connection ID: {connection.id}, Name: {connection.name}")
+    print("Person:")
+    print(f"           id: {connection.person.id}")
+    print(f"   first_name: {connection.person.first_name}")
+    print(f"    last_name: {connection.person.last_name}")
+    print(f" company_name: {connection.person.company_name}")
+    print()
+    print("Location:")
+    print(f"           id: {connection.location.id}")
+    print(f"    person_id: {connection.location.person_id}")
+    print(f"    longitude: {connection.location.longitude}")
+    print(f"     latitude: {connection.location.latitude}")
+    print(f"creation_time: {connection.location.creation_time}")
+    print()
+    print()
 

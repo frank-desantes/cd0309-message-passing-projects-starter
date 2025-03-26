@@ -7,11 +7,12 @@ COPY package-lock.json ./
 
 RUN npm install
 RUN npm install react-scripts@3.4.3 -g
+RUN npm install google-protobuf
+RUN npm install grpc-web
 
-CMD ["pwd"]
-COPY . ./
+COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "start", "--debug"]
 

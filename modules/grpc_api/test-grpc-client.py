@@ -10,7 +10,7 @@ def run():
 
     # Create a request
     request = connections_pb2.ConnectionRequest(
-        person_id="5",
+        person_id=5,
         start_date="2020-01-01",
         end_date="2020-12-30",
         distance=5
