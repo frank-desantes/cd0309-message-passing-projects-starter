@@ -1,11 +1,11 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_restx import Api
 from flask_sqlalchemy import SQLAlchemy
 
-globalServer = None
-
 db = SQLAlchemy()
+
+globalServer = None
 
 def start_grpc_server(app):
     import grpc
@@ -24,10 +24,14 @@ def start_grpc_server(app):
     DATE_FORMAT = "%Y-%m-%d"
     
     global globalServer
-   
+  
     #print("prepare gRPC server with class ConnectionsServicer")
     class ConnectionServicer(connections_pb2_grpc.ConnectionServiceServicer):
         def GetConnections(self, request, context):
+            #context.set_trailing_metadata((('Access-Control-Allow-Origin', '*'),))
+            #context.set_trailing_metadata((('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'),))
+            #context.set_trailing_metadata((('Access-Control-Allow-Headers', 'Content-Type, Authorization'),))
+
             # Set CORS headers
             #CORS(app) //not working
             #context.set_trailing_metadata((('Access-Control-Allow-Origin', '*'),)) //not working
@@ -89,8 +93,7 @@ def start_grpc_server(app):
                 )
 
                 connectionResponse.connections.append(connection)
-                # Set CORS headers
-                #connectionResponse.headers.add('Access-Control-Allow-Origin', '*') //not working
+
             return connectionResponse 
                 
     #print("Create a gRPC server")
@@ -125,6 +128,7 @@ def create_app(env=None):
     api = Api(app, title="UdaConnect API", version="0.1.0")
 
     CORS(app)  # Set CORS for development
+    #CORS(app, resources={r"/*": {"origins": "*"}})
 
     register_routes(api, app)
     db.init_app(app)

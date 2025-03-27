@@ -7,8 +7,17 @@ COPY package-lock.json ./
 
 RUN npm install
 RUN npm install react-scripts@3.4.3 -g
-RUN npm install google-protobuf
+
+
 RUN npm install grpc-web
+RUN npm install grpc
+
+#RUN npm install grpc
+#RUN npm install @grpc/proto-loader
+
+#RUN npm install @grpc/proto-loader
+#RUN npm install @grpc/grpc-js
+##RUN npm install http2
 
 COPY . .
 

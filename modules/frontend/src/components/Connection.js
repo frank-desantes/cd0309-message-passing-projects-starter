@@ -19,7 +19,7 @@ class Connection extends Component {
       this.getConnections(personId);
     }
   }
-
+        //original
   // getConnections = (personId) => {
   //   if (personId) {
   //     // TODO: endpoint should be abstracted into a config variable
@@ -36,6 +36,7 @@ class Connection extends Component {
   //   }
   // };
 
+        //Quellübergreifende (Cross-Origin) Anfrage blockiert: Die Gleiche-Quelle-Regel verbietet das Lesen der externen Ressource auf http://localhost:30003/ConnectionService/GetConnections. (Grund: CORS-Kopfzeile 'Access-Control-Allow-Origin' fehlt). Statuscode: 200.
   getConnections = (personId) => {
     console.log('enter getConnections');
 
@@ -64,6 +65,95 @@ class Connection extends Component {
       });
     }
   };
+
+
+      //   Starting the development server...
+      // Failed to compile.
+      // /node_modules/@mapbox/node-pre-gyp/lib/util/s3_setup.js
+      // Module not found: Can't resolve 'aws-sdk' in '/node_modules/@mapbox/node-pre-gyp/lib/util'
+  // getConnections = (personId) => {
+  //   console.log('enter getConnections');
+  //   const grpc = require('grpc');
+  //   const protoLoader = require('@grpc/proto-loader');
+
+  //   // Load the protobuf
+  //   const PROTO_PATH = './connections.proto';
+  //   const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
+  //     keepCase: true,
+  //     longs: String,
+  //     enums: String,
+  //     defaults: true,
+  //     oneofs: true
+  //   });
+  //   const connectionService = grpc.loadPackageDefinition(packageDefinition).ConnectionService;
+
+  //   // Create the client
+  //   const client = new connectionService.GetConnections('localhost:50051', grpc.credentials.createInsecure());
+
+  //   console.log(client);
+
+  //   if (personId) {
+  //     // Define the request
+  //     const request = {
+  //       person_id: personId,
+  //       start_date: '2025-01-01',
+  //       end_date: '2025-12-31',
+  //       distance: 5
+  //     };
+  //     client.getConnections(request, {}, (err, response) => {
+  //       if (err) {
+  //         console.error(err);
+  //         return;
+  //       }
+  //       const connections = response.getConnectionsList();
+  //       this.setState({
+  //         connections: connections,
+  //         personId: this.state.personId,
+  //       });
+  //     });
+  //   }
+  // };
+
+
+        // /node_modules/@grpc/grpc-js/build/src/server-interceptors.js
+        // Module not found: Can't resolve 'http2' in '/node_modules/@grpc/grpc-js/build/src'
+  // getConnections = (personId) => {
+  //   console.log('enter getConnections');
+
+  //   const grpc = require('@grpc/grpc-js');
+  //   const protoLoader = require('@grpc/proto-loader');
+
+  //   // Load the service.proto file
+  //   const packageDefinition = protoLoader.loadSync('connections.proto');
+  //   const myservice = grpc.loadPackageDefinition(packageDefinition).ConnectionService;
+
+  //   // Create the client
+  //   const client = new myservice.GetConnections('http://localhost:30003', grpc.credentials.createInsecure());
+
+  //   console.log(client);
+
+  //   if (personId) {
+  //     // Define the request
+  //     const request = {
+  //       person_id: personId,
+  //       start_date: '2025-01-01',
+  //       end_date: '2025-12-31',
+  //       distance: 5
+  //     };
+
+  //     client.getConnections(request, {}, (err, response) => {
+  //       if (err) {
+  //         console.error(err);
+  //         return;
+  //       }
+  //       const connections = response.getConnectionsList();
+  //       this.setState({
+  //         connections: connections,
+  //         personId: this.state.personId,
+  //       });
+  //     });
+  //   }
+  // };
 
   render() {
     return (
