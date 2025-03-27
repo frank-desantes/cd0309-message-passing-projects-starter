@@ -1,0 +1,14 @@
+#for use of grpc in js
+npm install @grpc/grpc-js @grpc/proto-loader
+npm install grpc-web
+
+
+#create connections.proto and build
+npm install -g protoc-gen-js
+protoc -I=. connections.proto --js_out=import_style=commonjs,binary:. --grpc-web_out=import_style=commonjs,mode=grpcwebtext:.
+
+
+#grpc for python 
+the docker immage latest version is grpcio==1.62.3 so you need to compile also in this version
+pip install grpcio== 1.62.3
+python -m grpc_tools.protoc -I./ --python_out=./ --grpc_python_out=./ connections.proto
