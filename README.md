@@ -1,6 +1,9 @@
 # Running the app
 The project has been set up such that you should be able to have the project up and running with Kubernetes.
 
+# clone from github
+frank-desantes/cd0309-message-passing-projects-starter
+
 # install the cluster
 `kubectl apply -f deployment/`
 
