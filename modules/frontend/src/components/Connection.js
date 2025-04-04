@@ -19,52 +19,52 @@ class Connection extends Component {
       this.getConnections(personId);
     }
   }
-        //original
-  // getConnections = (personId) => {
-  //   if (personId) {
-  //     // TODO: endpoint should be abstracted into a config variable
-  //     fetch(
-  //       `http://localhost:30001/api/persons/${personId}/connection?start_date=2020-01-01&end_date=2020-12-30&distance=5`
-  //     )
-  //       .then((response) => response.json())
-  //       .then((connections) =>
-  //         this.setState({
-  //           connections: connections,
-  //           personId: this.state.personId,
-  //         })
-  //       );
-  //   }
-  // };
-
-        //Quellübergreifende (Cross-Origin) Anfrage blockiert: Die Gleiche-Quelle-Regel verbietet das Lesen der externen Ressource auf http://localhost:30003/ConnectionService/GetConnections. (Grund: CORS-Kopfzeile 'Access-Control-Allow-Origin' fehlt). Statuscode: 200.
+        
   getConnections = (personId) => {
-    console.log('enter getConnections');
-
-    //const client = new ConnectionServiceClient('http://udaconnect_grpc_api:5003');
-    const client = new ConnectionServiceClient('http://localhost:30003');
-
-    console.log(client);
-
     if (personId) {
-      const request = new ConnectionRequest();
-      request.setPersonId(personId);
-      request.setStartDate('2020-01-01');
-      request.setEndDate('2020-12-30');
-      request.setDistance(5);
-
-      client.getConnections(request, {}, (err, response) => {
-        if (err) {
-          console.error(err);
-          return;
-        }
-        const connections = response.getConnectionsList();
-        this.setState({
-          connections: connections,
-          personId: this.state.personId,
-        });
-      });
+      fetch(
+        `http://localhost:30001/api/persons/${personId}/connection?start_date=2020-01-01&end_date=2020-12-30&distance=5`
+      )
+        .then((response) => response.json())
+        .then((connections) =>
+          this.setState({
+            connections: connections,
+            personId: this.state.personId,
+          })
+        );
     }
   };
+
+        //Quellübergreifende (Cross-Origin) Anfrage blockiert: Die Gleiche-Quelle-Regel verbietet das Lesen der externen Ressource auf http://localhost:30003/ConnectionService/GetConnections. (Grund: CORS-Kopfzeile 'Access-Control-Allow-Origin' fehlt). Statuscode: 200.
+        //going with the rest service aboce until mayur can help me on that
+  // getConnections = (personId) => {
+  //   console.log('enter getConnections');
+
+  //   //const client = new ConnectionServiceClient('http://udaconnect_grpc_api:5003');
+  //   const client = new ConnectionServiceClient('http://localhost:30003');
+
+  //   console.log(client);
+
+  //   if (personId) {
+  //     const request = new ConnectionRequest();
+  //     request.setPersonId(personId);
+  //     request.setStartDate('2020-01-01');
+  //     request.setEndDate('2020-12-30');
+  //     request.setDistance(5);
+
+  //     client.getConnections(request, {}, (err, response) => {
+  //       if (err) {
+  //         console.error(err);
+  //         return;
+  //       }
+  //       const connections = response.getConnectionsList();
+  //       this.setState({
+  //         connections: connections,
+  //         personId: this.state.personId,
+  //       });
+  //     });
+  //   }
+  // };
 
 
       //   Starting the development server...

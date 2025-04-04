@@ -1,7 +1,7 @@
 import json
 from kafka import KafkaConsumer
 
-consumer = KafkaConsumer(bootstrap_servers='udaconnect-kafka-broker.default.svc.cluster.local:9092',auto_offset_reset='latest')
+consumer = KafkaConsumer(bootstrap_servers=['udaconnect-kafka-broker.default.svc.cluster.local:9094'],auto_offset_reset='latest')
 consumer.subscribe(['location'])
 
 for message in consumer:

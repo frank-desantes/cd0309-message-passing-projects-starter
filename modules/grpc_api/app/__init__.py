@@ -1,3 +1,4 @@
+from flask_cors import cross_origin 
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_restx import Api
@@ -27,7 +28,11 @@ def start_grpc_server(app):
   
     #print("prepare gRPC server with class ConnectionsServicer")
     class ConnectionServicer(connections_pb2_grpc.ConnectionServiceServicer):
+        @cross_origin()
         def GetConnections(self, request, context):
+            
+            # hint from mayur ->CORS(app, origins=['http://localhost:3000'])
+
             #context.set_trailing_metadata((('Access-Control-Allow-Origin', '*'),))
             #context.set_trailing_metadata((('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'),))
             #context.set_trailing_metadata((('Access-Control-Allow-Headers', 'Content-Type, Authorization'),))

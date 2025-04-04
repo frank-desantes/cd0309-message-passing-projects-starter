@@ -1,3 +1,5 @@
+from flask_cors import cross_origin 
+from flask_cors import CORS
 globalServer = None
 
 def start_grpc_server():
@@ -29,8 +31,10 @@ def start_grpc_server():
         
     #print("prepare gRPC server with class ConnectionsServicer")
     class ConnectionServicer(connections_pb2_grpc.ConnectionServiceServicer):
-        #@cross_origin()
+        
+        @cross_origin()
         def GetConnections(self, request, context):
+            CORS(app, origins=['http://localhost:30000'])
             # Set CORS headers
             #CORS(app) //not working
             #context.set_trailing_metadata((('Access-Control-Allow-Origin', '*'),)) //not working
