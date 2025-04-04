@@ -10,7 +10,7 @@ frank-desantes/cd0309-message-passing-projects-starter
 # verify installation
 `kubectl get pods`
 
-kubernetes, postgres, udaconnect-api, udaconnect-app, udaconnect-grpc-api, udaconnect-kafka-api, udaconnect-kafka-broker, udaconnect-rest-api       
+postgres, udaconnect-app, udaconnect-grpc-api, udaconnect-kafka-api, udaconnect-kafka-broker, udaconnect-rest-api       
 
 # seed database once
 `sh scripts/run_db_command.sh <POD_NAME>` - Seed your database against the `postgres` pod. (`kubectl get pods` will give you the `POD_NAME`)
@@ -19,4 +19,4 @@ kubernetes, postgres, udaconnect-api, udaconnect-app, udaconnect-grpc-api, udaco
 http://localhost:30000/
 
 # see documentation (person)
-http://localhost:30001/
+http://localhost:30002/

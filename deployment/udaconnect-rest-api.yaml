@@ -31,7 +31,7 @@ spec:
         service: udaconnect-rest-api
     spec:
       containers:
-      - image: frankdesantes/udaconnect-rest-api:v3
+      - image: frankdesantes/udaconnect-rest-api:latest
         name: udaconnect-rest-api
         imagePullPolicy: Always
         env:
