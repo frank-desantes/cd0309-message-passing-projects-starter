@@ -1,0 +1,14 @@
+postmann is not abble to export a GRPC service. If you want to use my grpc service...
+
+url: 
+http://localhost:30003
+
+paiload jason:
+{
+    "distance": 5,
+    "end_date": "2020-12-30",
+    "person_id": 5,
+    "start_date": "2020-01-01"
+}
+
+

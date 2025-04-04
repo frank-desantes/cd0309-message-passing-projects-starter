@@ -28,7 +28,7 @@ def start_grpc_server(app):
   
     #print("prepare gRPC server with class ConnectionsServicer")
     class ConnectionServicer(connections_pb2_grpc.ConnectionServiceServicer):
-        @cross_origin()
+        #@cross_origin()
         def GetConnections(self, request, context):
             
             # hint from mayur ->CORS(app, origins=['http://localhost:3000'])
