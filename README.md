@@ -2,10 +2,11 @@
 The project has been set up such that you should be able to have the project up and running with Kubernetes.
 
 # install the cluster
-`kubectl apply -f deployment`
+`kubectl apply -f deployment/`
 
 # verify installation
 `kubectl get pods`
+
 kubernetes, postgres, udaconnect-api, udaconnect-app, udaconnect-grpc-api, udaconnect-kafka-api, udaconnect-kafka-broker, udaconnect-rest-api       
 
 # seed database once
